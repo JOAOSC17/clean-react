@@ -2,7 +2,7 @@ const path = require('path')
 const { CleanWebpackPlugin } = require('clean-webpack-plugin')
 module.exports = {
   mode: 'development',
-  entry: './src/index.tsx',
+  entry: './src/main/index.tsx',
   output: {
     path: path.join(__dirname, 'public/js'),
     publicPath: '/public/js',
@@ -19,25 +19,27 @@ module.exports = {
       test: /\.ts(x?)$/,
       loader: 'ts-loader',
       exclude: /node_modules/
-    },
-    {
+    }, {
       test: /\.scss$/,
       use: [{
-        loader: 'styled-loader'
+        loader: 'style-loader'
       }, {
         loader: 'css-loader',
-        option: {
+        options: {
           modules: true
         }
       }, {
         loader: 'sass-loader'
-      }],
-      exclude: /node_modules/
+      }]
     }]
   },
   devServer: {
-    contentBase: './public',
-    writeToDisk: true,
+    static: {
+      directory: path.join(__dirname, 'public')
+    },
+    devMiddleware: {
+      writeToDisk: true
+    },
     historyApiFallback: true
   },
   externals: {
