@@ -1,4 +1,4 @@
-import React, { memo } from 'react'
+import React from 'react'
 import Styles from './input-styles.scss'
 
 type Props = React.DetailedHTMLProps<React.InputHTMLAttributes<HTMLInputElement>, HTMLInputElement>
@@ -10,4 +10,4 @@ const Input: React.FC<Props> = (props: Props) => {
     </div>
   )
 }
-export default memo(Input)
+export default Input
